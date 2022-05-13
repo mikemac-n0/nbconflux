@@ -225,7 +225,8 @@ unknown type  {{ cell.type }}
 </ac:structured-macro>
 
 {%- if resources.enable_mathjax %}
-<ac:structured-macro ac:macro-id="c5e95bac-43c5-4db4-abd0-af1dfcf97384" ac:name="html" ac:schema-version="1">
+<ac:structured-macro ac:macro-id="c5e95bac-43c5-4db4-abd0-af1dfcf97384" ac:name="html-macro" ac:schema-version="1">
+    <ac:parameter ac:name="sanitize">false</ac:parameter>
     <ac:plain-text-body><![CDATA[
         {{ mathjax() }}
     ]]>

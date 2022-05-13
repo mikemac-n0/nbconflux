@@ -221,6 +221,13 @@ class ConfluenceExporter(HTMLExporter):
                                        'representation': 'storage',
                                        'value': body
                                    }
+                               },
+                               'metadata': {
+                                   'properties': {
+                                   'editor': {
+                                       'value': 'v1'
+                                       }
+                                   }
                                }
                             },
                             auth=(self.username, self.password)
