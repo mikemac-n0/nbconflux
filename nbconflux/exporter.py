@@ -101,12 +101,6 @@ class ConfluenceExporter(HTMLExporter):
         c.merge(overrides)
         return c
 
-    # @property
-    # def template_paths(self):
-    #     return super().template_paths + [
-    #         os.path.join(os.path.abspath(os.path.dirname(__file__)), "templates")
-    #     ]
-
     def __init__(self, config, **kwargs):
         config.HTMLExporter.preprocessors = [ConfluencePreprocessor]
         config.HTMLExporter.filters = {
@@ -385,6 +379,4 @@ class ConfluenceExporter(HTMLExporter):
         # so stash it here for later lookup
         self.notebook_filename = filename
 
-        # print(f"template_path: {self.template_paths}")
-        print(dir(self))
         return super(ConfluenceExporter, self).from_filename(filename, *args, **kwargs)

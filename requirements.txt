@@ -1,4 +1,4 @@
-bleach
+bleach[css]>=5.0
 html5lib
 nbconvert>=6.0
 requests
