@@ -25,7 +25,7 @@ setup(
     install_requires=[
         "bleach[css]>=5.0",
         "html5lib",
-        "nbconvert>=6.0",
+        "nbconvert>=7.0",
         "requests",
         "traitlets",
     ],
