@@ -1,12 +1,22 @@
 import getpass
 
-from .exporter import ConfluenceExporter
 from traitlets.config import Config
 
+from .exporter import ConfluenceExporter
 
-def notebook_to_page(notebook_file, confluence_url, username=None, password=None,
-                     generate_toc=True, attach_ipynb=True, enable_style=True, enable_mathjax=False,
-                     extra_labels=None, notebook_css=None):
+
+def notebook_to_page(
+    notebook_file,
+    confluence_url,
+    username=None,
+    password=None,
+    generate_toc=True,
+    attach_ipynb=True,
+    enable_style=True,
+    enable_mathjax=False,
+    extra_labels=None,
+    notebook_css=None,
+):
     """Transforms the given notebook file into Confluence storage format and
     updates the given Confluence URL with its content.
 
@@ -41,7 +51,7 @@ def notebook_to_page(notebook_file, confluence_url, username=None, password=None
     if username is None:
         username = getpass.getuser()
     if password is None:
-        password = getpass.getpass('Confluence password for {}:'.format(username))
+        password = getpass.getpass(f"Confluence password for {username}:")
     if extra_labels is None:
         extra_labels = []
 
@@ -59,5 +69,5 @@ def notebook_to_page(notebook_file, confluence_url, username=None, password=None
 
     exporter = ConfluenceExporter(c)
     result = exporter.from_filename(notebook_file)
-    print('Updated', confluence_url)
+    print("Updated", confluence_url)
     return result

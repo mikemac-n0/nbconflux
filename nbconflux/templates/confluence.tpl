@@ -49,7 +49,7 @@ In&nbsp;[&nbsp;]:
 {% endif %}
 {%- endblock empty_in_prompt %}
 
-{# 
+{#
   output_prompt doesn't do anything in HTML,
   because there is a prompt div in each output area (see output block)
 #}

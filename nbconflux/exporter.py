@@ -5,14 +5,14 @@ import os
 import urllib.parse as urlparse
 
 import requests
-
-from .filter import sanitize_html
-from .markdown import ConfluenceMarkdownRenderer
-from .preprocessor import ConfluencePreprocessor
 from nbconvert import HTMLExporter
 from nbconvert.filters.markdown_mistune import MarkdownWithMath
 from traitlets import Bool, List, Unicode
 from traitlets.config import Config
+
+from .filter import sanitize_html
+from .markdown import ConfluenceMarkdownRenderer
+from .preprocessor import ConfluencePreprocessor
 
 DEFAULT_CSS = "https://nbviewer.jupyter.org/static/build/notebook.css"
 
@@ -97,7 +97,7 @@ class ConfluenceExporter(HTMLExporter):
             }
         )
 
-        c = super(ConfluenceExporter, self).default_config.copy()
+        c = super().default_config.copy()
         c.merge(overrides)
         return c
 
@@ -107,7 +107,7 @@ class ConfluenceExporter(HTMLExporter):
             "sanitize_html": sanitize_html,
         }
 
-        super(ConfluenceExporter, self).__init__(config=config, **kwargs)
+        super().__init__(config=config, **kwargs)
 
         for preprocessor in self._preprocessors:
             if isinstance(preprocessor, ConfluencePreprocessor):
@@ -336,9 +336,7 @@ class ConfluenceExporter(HTMLExporter):
         resources["notebook_css"] = self.notebook_css
 
         # Convert the notebook to Confluence storage format, which is XHTML-like
-        html, resources = super(ConfluenceExporter, self).from_notebook_node(
-            nb, resources, **kw
-        )
+        html, resources = super().from_notebook_node(nb, resources, **kw)
 
         # Update the page with the new content
         self.update_page(self.page_id, html)
@@ -379,4 +377,4 @@ class ConfluenceExporter(HTMLExporter):
         # so stash it here for later lookup
         self.notebook_filename = filename
 
-        return super(ConfluenceExporter, self).from_filename(filename, *args, **kwargs)
+        return super().from_filename(filename, *args, **kwargs)
