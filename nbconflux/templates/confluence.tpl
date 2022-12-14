@@ -1,5 +1,5 @@
-{%- extends 'display_priority.tpl' -%}
-{% from 'mathjax.tpl' import mathjax %}
+{%- extends 'display_priority.j2' -%}
+{% from 'mathjax.html.j2' import mathjax %}
 
 {%- block header -%}
 {%- if resources.generate_toc %}
@@ -49,7 +49,7 @@ In&nbsp;[&nbsp;]:
 {% endif %}
 {%- endblock empty_in_prompt %}
 
-{# 
+{#
   output_prompt doesn't do anything in HTML,
   because there is a prompt div in each output area (see output block)
 #}
@@ -203,7 +203,7 @@ unknown type  {{ cell.type }}
 {%- endif %}
 
 <ac:structured-macro ac:macro-id="8250dedf-fcaa-48da-b12d-0f929c620dc4" ac:name="style" ac:schema-version="1">
-    <ac:parameter ac:name="import">https://nbviewer.jupyter.org/static/build/notebook.css</ac:parameter>
+    <ac:parameter ac:name="import">{{ resources['notebook_css'] }}</ac:parameter>
 </ac:structured-macro>
 
 <ac:structured-macro ac:macro-id="8250dedf-fcaa-48da-b12d-0f929c620dc4" ac:name="style" ac:schema-version="1">
@@ -225,7 +225,8 @@ unknown type  {{ cell.type }}
 </ac:structured-macro>
 
 {%- if resources.enable_mathjax %}
-<ac:structured-macro ac:macro-id="c5e95bac-43c5-4db4-abd0-af1dfcf97384" ac:name="html" ac:schema-version="1">
+<ac:structured-macro ac:macro-id="c5e95bac-43c5-4db4-abd0-af1dfcf97384" ac:name="html-macro" ac:schema-version="1">
+    <ac:parameter ac:name="sanitize">false</ac:parameter>
     <ac:plain-text-body><![CDATA[
         {{ mathjax() }}
     ]]>
