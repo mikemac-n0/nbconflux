@@ -10,6 +10,7 @@
 {%- endif %}
 {%- endblock header %}
 
+
 {% block codecell %}
 <p class="border-box-sizing code_cell rendered">
 {{ super() }}
@@ -56,12 +57,22 @@ In&nbsp;[&nbsp;]:
 {% block output_prompt %}
 {% endblock output_prompt %}
 
+{#
 {% block input %}
 <div class="inner_cell">
     <div class="input_area">
 {{ cell.source | highlight_code(metadata=cell.metadata) }}
 </div>
 </div>
+{%- endblock input %}
+#}
+
+{% block input %}
+<ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="322c8481-07f7-4c38-95c7-2f7cf4245d63">
+    <ac:parameter ac:name="language">py</ac:parameter>
+    <ac:parameter ac:name="collapse">true</ac:parameter>
+    <ac:plain-text-body><![CDATA[{{ cell.source }}]]></ac:plain-text-body>
+</ac:structured-macro>
 {%- endblock input %}
 
 {% block output %}

@@ -61,11 +61,11 @@ class ConfluenceExporter(HTMLExporter):
         config=True, default_value=True, help="Attach the notebook ipynb to the page?"
     )
     enable_style = Bool(
-        config=True, default_value=True, help="Add basic Jupyter stylesheet?"
+        config=True, default_value=False, help="Add basic Jupyter stylesheet?"
     )
     enable_mathjax = Bool(
         config=True,
-        default_value=False,
+        default_value=True,
         help="Add MathJax to the page to render equations?",
     )
     extra_labels = List(
@@ -305,7 +305,9 @@ class ConfluenceExporter(HTMLExporter):
         XHTML compliant for compatibility with Confluence storage format.
         """
         renderer = ConfluenceMarkdownRenderer(
-            escape=False, use_xhtml=True, anchor_link_text=self.anchor_link_text
+            escape=False,
+            embed_images=True,
+            anchor_link_text=self.anchor_link_text,
         )
         return MarkdownWithMath(renderer=renderer).render(source)
 
